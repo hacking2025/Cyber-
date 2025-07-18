@@ -1,29 +1,20 @@
-module.exports.handleEvent = function ({ api, event }) {
-  const { body, threadID, messageID, senderID } = event;
+name: Run Bot Automatically
 
-  if (event._autoreplyHandled) return;
-  event._autoreplyHandled = true;
+on:
+  push:
+    branches: [main]
 
-  if (!body) return;
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
 
-  const msg = body.toLowerCase();
+    steps:
+      - uses: actions/checkout@v4
 
-  const replies = [
-    "কি অবস্থা হুজুর? 😂",
-    "ভাই আর কত জ্বালাবেন 😒",
-    "তুমি না হলে আমি নেই 💔",
-    "আর বলো না ভাই, জীবনটাই হ্যাক 😆",
-    "বলো বোট ভাইজান, তোমার লাগবো কিতা? 🤖",
-    "তুমি কি জানো আমি তোমায় কতো ভালোবাসি? ❤️",
-    "এই যে সুন্দর মানুষটা, কেমন আছো? 🥰",
-    "কি খবর পাগলাটে! 🐸",
-    "অ্যাই... আর একটু বলো তো, মজা লাগছে! 😜",
-    "ভাই তোমার জন্য বটও প্রেমে পড়ছে 🤖❤️"
-  ];
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-  const randomReply = replies[Math.floor(Math.random() * replies.length)];
+      - run: npm install
 
-  if (msg.includes("hello") || msg.includes("hi") || msg.includes("vai") || msg.includes("valo") || msg.includes("kemon")) {
-    api.sendMessage(randomReply, threadID, messageID);
-  }
-};
+      - run: node index.js
