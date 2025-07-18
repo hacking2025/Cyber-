@@ -1,0 +1,14 @@
+{
+  "name": "cyber-bot",
+  "version": "1.0.0",
+  "description": "Messenger Auto Reply & React Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "facebook-chat-api": "^1.6.0"
+  },
+  "author": "Tamim",
+  "license": "MIT"
+}
