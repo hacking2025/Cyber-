@@ -1,20 +1,11 @@
-name: Run Bot Automatically
+// index.js
 
-on:
-  push:
-    branches: [main]
+console.log("Bot started successfully!");
 
-jobs:
-  run-bot:
-    runs-on: ubuntu-latest
+// Main bot function
+function startBot() {
+  console.log("Bot is running...");
+  // Your bot's code goes here
+}
 
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - run: npm install
-
-      - run: node index.js
+startBot();
